@@ -1,0 +1,41 @@
+{
+  "name": "erizoplast",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "validar": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validar-catalogo.mjs",
+    "typecheck": "tsc --noEmit",
+    "prebuild": "npm run validar",
+    "probar": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/probar-cotizacion.mjs",
+    "probar:novedades": "node scripts/probar-novedades.mjs",
+    "auditar": "node scripts/auditar-seguridad.mjs",
+    "foto": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/agregar-foto.mjs",
+    "revisar": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/revisar-contenido.mjs",
+    "medir": "node scripts/medir-rendimiento.mjs",
+    "responsive": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/auditar-responsive.mjs",
+    "probar:menu": "node scripts/probar-menu.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^1.54.0",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

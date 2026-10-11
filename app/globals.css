@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   SISTEMA DE DISEÑO PLASTINORTE
+   Todo lo visual nace aquí. Los componentes solo consumen estos tokens.
+   Revisión en vivo: /sistema-diseno
+   ========================================================================== */
+
+@theme {
+  /* --- Color --------------------------------------------------------------
+     Azul petróleo: identidad. Naranja: acento escaso (acción y detalles).
+     Concreto: grises cálidos de apoyo, para no caer en el gris "tecnológico".
+     Regla de contraste: sobre fondo claro el naranja NO sirve para texto
+     (≈3:1); usar naranja-700. Sobre petróleo oscuro sí (≈5,5:1). */
+  --color-petroleo-50: #eef6f8;
+  --color-petroleo-100: #d5e8ed;
+  --color-petroleo-200: #aed1db;
+  --color-petroleo-300: #7db3c3;
+  --color-petroleo-400: #4d8fa5;
+  --color-petroleo-500: #2f7189;
+  --color-petroleo-600: #245b70;
+  --color-petroleo-700: #1c4a5c;
+  --color-petroleo-800: #153a49;
+  --color-petroleo-900: #0f2c38;
+  --color-petroleo-950: #091d26;
+
+  --color-naranja-50: #fff4eb;
+  --color-naranja-100: #ffe5cf;
+  --color-naranja-200: #ffc89d;
+  --color-naranja-300: #ffa465;
+  --color-naranja-400: #fb8335;
+  --color-naranja-500: #ee6a14;
+  --color-naranja-600: #cf530c;
+  --color-naranja-700: #a8410c;
+  --color-naranja-800: #86350f;
+  --color-naranja-900: #6d2e10;
+
+  --color-concreto-50: #f7f7f5;
+  --color-concreto-100: #efefec;
+  --color-concreto-200: #e2e2de;
+  --color-concreto-300: #cdcdc7;
+  --color-concreto-400: #a9a9a2;
+  --color-concreto-500: #86867f;
+  --color-concreto-600: #66665f;
+  --color-concreto-700: #4d4d47;
+  --color-concreto-800: #34342f;
+  --color-concreto-900: #1f1f1b;
+
+  /* --- Tipografía -------------------------------------------------------- */
+  --text-display-2xl: clamp(2.75rem, 1.5rem + 5.6vw, 6.5rem);
+  --text-display-2xl--line-height: 0.94;
+  --text-display-2xl--letter-spacing: -0.025em;
+  --text-display-xl: clamp(2.125rem, 1.4rem + 4.2vw, 4.75rem);
+  --text-display-xl--line-height: 0.98;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-lg: clamp(1.875rem, 1.3rem + 2.7vw, 3.25rem);
+  --text-display-lg--line-height: 1.04;
+  --text-display-lg--letter-spacing: -0.015em;
+  --text-display-md: clamp(1.5rem, 1.15rem + 1.6vw, 2.25rem);
+  --text-display-md--line-height: 1.1;
+  --text-display-md--letter-spacing: -0.01em;
+  --text-display-sm: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-display-sm--line-height: 1.15;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.18em;
+
+  /* --- Espaciado de sección --------------------------------------------- */
+  --spacing-seccion: clamp(4rem, 2.5rem + 6vw, 8.5rem);
+  --spacing-seccion-sm: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+  --spacing-cabecera: 4.25rem;
+
+  /* --- Radios: poco redondeo, carácter de pieza industrial -------------- */
+  --radius-pieza: 0.25rem;
+  --radius-tarjeta: 0.375rem;
+
+  /* --- Sombras ----------------------------------------------------------- */
+  --shadow-pieza: 0 1px 0 rgb(9 29 38 / 0.04), 0 8px 24px -12px rgb(9 29 38 / 0.18);
+  --shadow-elevada: 0 2px 0 rgb(9 29 38 / 0.04), 0 24px 48px -20px rgb(9 29 38 / 0.35);
+
+  /* --- Movimiento -------------------------------------------------------- */
+  --ease-industrial: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --animate-entrada: entrada 0.8s var(--ease-industrial) both;
+  --animate-flotante-in: flotante-in 0.6s var(--ease-industrial) 1.2s both;
+  --animate-hero-zoom: hero-zoom 2.6s var(--ease-industrial) both;
+
+  @keyframes hero-zoom {
+    from {
+      transform: scale(1.08);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes entrada {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes flotante-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Las fuentes llegan como variables CSS desde next/font (ver layout.tsx). */
+@theme inline {
+  --font-display: var(--font-archivo), "Arial Narrow", Arial, sans-serif;
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  /* Que los anclajes (#contacto…) no queden tapados por la cabecera fija */
+  scroll-padding-top: calc(var(--spacing-cabecera) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Todo `grid` nace con UNA columna que sí puede encogerse (minmax(0, 1fr)). Sin esto, un grid sin plantilla
+   tiene pista «auto», que crece hasta el contenido más ancho que no admite salto de línea (un botón, una
+   cifra) y empuja la página más allá del ancho del móvil: desbordamiento horizontal a 320–360 px.
+   Va en la capa base a propósito: cualquier `grid-cols-*` o `lg:grid-cols-*` sigue mandando sobre ella.
+   :where() deja la especificidad en cero. */
+@layer base {
+  :where(.grid) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+body {
+  background: #fff;
+  color: var(--color-petroleo-950);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-naranja-500);
+  color: var(--color-petroleo-950);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-naranja-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   UTILIDADES PROPIAS
+   ========================================================================== */
+
+/* Ancho tipográfico de Archivo: más ancho para marca y titulares de impacto */
+@utility ancho-expandido {
+  font-variation-settings: "wdth" 118;
+}
+@utility ancho-normal {
+  font-variation-settings: "wdth" 100;
+}
+
+/* Cifras de ficha técnica: alineadas y de ancho fijo */
+@utility cifras {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Textura de jaba calada: ranuras escalonadas. Va como fondo decorativo. */
+@utility textura-calada-clara {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='36'%3E%3Crect x='4' y='6' width='28' height='8' rx='4' fill='white' fill-opacity='.07'/%3E%3Crect x='32' y='24' width='28' height='8' rx='4' fill='white' fill-opacity='.07'/%3E%3Crect x='-24' y='24' width='28' height='8' rx='4' fill='white' fill-opacity='.07'/%3E%3C/svg%3E");
+}
+@utility textura-calada-oscura {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='36'%3E%3Crect x='4' y='6' width='28' height='8' rx='4' fill='%23091d26' fill-opacity='.055'/%3E%3Crect x='32' y='24' width='28' height='8' rx='4' fill='%23091d26' fill-opacity='.055'/%3E%3Crect x='-24' y='24' width='28' height='8' rx='4' fill='%23091d26' fill-opacity='.055'/%3E%3C/svg%3E");
+}
+
+/* Retícula técnica muy tenue (fondos de bloques de datos) */
+@utility reticula {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Numerales de contorno: solo trazo, que se rellena al pasar el cursor.
+   El color del trazo se cambia con la variable --trazo. */
+@utility texto-contorno {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--trazo, var(--color-petroleo-300));
+}
+
+/* Aparición al hacer scroll. El componente Reveal marca data-estado.
+   Sin JS el contenido queda visible: solo se oculta lo que JS va a revelar. */
+.reveal {
+  transition:
+    opacity 0.8s var(--ease-industrial) var(--retraso, 0ms),
+    transform 0.8s var(--ease-industrial) var(--retraso, 0ms);
+}
+.reveal[data-estado="oculto"] {
+  opacity: 0;
+  transform: translateY(22px);
+}
+.reveal[data-estado="visible"] {
+  opacity: 1;
+  transform: none;
+}
+/* Regla de acento que se dibuja de izquierda a derecha cuando su bloque se revela */
+.reveal .regla-reveal {
+  transform-origin: left center;
+  transition: transform 1s var(--ease-industrial) calc(var(--retraso, 0ms) + 250ms);
+}
+.reveal[data-estado="oculto"] .regla-reveal {
+  transform: scaleX(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal .regla-reveal {
+    transition: none;
+  }
+  .reveal[data-estado="oculto"] .regla-reveal {
+    transform: none;
+  }
+  .reveal[data-estado="oculto"] {
+    opacity: 1;
+    transform: none;
+  }
+}
