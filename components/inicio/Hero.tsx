@@ -2,10 +2,15 @@ import { Boton } from "@/components/ui/Boton";
 import { BotonCotizar } from "@/components/ui/BotonCotizar";
 import { Contenedor } from "@/components/ui/Contenedor";
 import { Foto, RotuloReferencial } from "@/components/ui/Foto";
+import { formatearSoles, productosPublicados } from "@/lib/productos";
 
 // Sección 1. La foto es la protagonista: ocupa toda la portada y el degradado solo sostiene el texto.
 // El bloque inferior se deja libre (pb grande) porque el panel de ventajas sube a solaparlo.
 export function Hero() {
+  // Precio «desde»: el más bajo de los publicados, para que el precio se vea sin bajar de la portada.
+  const importes = productosPublicados().flatMap((p) => (p.precio.tipo === "referencial" ? [p.precio.soles] : []));
+  const desde = importes.length ? Math.min(...importes) : null;
+
   return (
     <section data-tono="oscuro" className="group/seccion relative isolate overflow-hidden bg-petroleo-950 text-white">
       {/* Zoom lento de entrada: da vida a la foto sin ser un parallax */}
@@ -40,6 +45,17 @@ export function Hero() {
             Fabricamos y vendemos jabas plásticas al por mayor para almacenar y transportar tu mercadería. Entregas en Lima y
             envíos a todo el Perú.
           </p>
+          {desde !== null && (
+            <a
+              href="#precios"
+              className="mt-7 inline-flex animate-entrada flex-wrap items-baseline gap-x-2.5 gap-y-1 rounded-pieza border border-naranja-400/50 bg-petroleo-950/60 px-4 py-2.5 backdrop-blur-sm transition-colors hover:border-naranja-400"
+              style={{ animationDelay: "300ms" }}
+            >
+              <span className="text-sm font-semibold uppercase tracking-[0.08em] text-petroleo-100">Desde</span>
+              <span className="cifras font-display ancho-normal text-3xl font-extrabold text-naranja-400">{formatearSoles(desde)}</span>
+              <span className="text-sm text-petroleo-100">por unidad · referencial, sujeto a confirmación · ver precios ↓</span>
+            </a>
+          )}
           <div className="mt-9 flex animate-entrada flex-wrap gap-3" style={{ animationDelay: "360ms" }}>
             <BotonCotizar tamano="lg" />
             <Boton href="/catalogo" variante="contorno-claro" tamano="lg" flecha>

@@ -5,6 +5,7 @@ import { Hero } from "@/components/inicio/Hero";
 import { LineasDestacadas } from "@/components/inicio/LineasDestacadas";
 import { Logistica } from "@/components/inicio/Logistica";
 import { Novedades } from "@/components/inicio/Novedades";
+import { Precios } from "@/components/inicio/Precios";
 import { Sobre } from "@/components/inicio/Sobre";
 import { Ventajas } from "@/components/inicio/Ventajas";
 import { DatosEstructurados } from "@/components/seo/DatosEstructurados";
@@ -14,6 +15,7 @@ import { urlSitio } from "@/lib/sitio";
 // portada fotográfica · panel horizontal de ventajas · mosaico de líneas · imagen y texto asimétricos ·
 // bloque oscuro de fabricación y transporte · cierre de conversión. La Fase 7 añade una séptima sección,
 // «Novedades», con el formulario de captación de correos (va tras el cierre, antes del pie).
+// El 11/10/2026 se añade «Precios» tras las ventajas, para que el precio sea de lo primero que se vea.
 // Todas las fotos son referenciales (data/fotos.ts) y van rotuladas como tales.
 
 // SEO de la portada: las frases que busca un comprador («jabas plásticas al por mayor», «en Lima», «fábrica»,
@@ -43,6 +45,7 @@ export default function Inicio() {
       />
       <Hero />
       <Ventajas />
+      <Precios />
       <LineasDestacadas />
       <Sobre />
       <Logistica />

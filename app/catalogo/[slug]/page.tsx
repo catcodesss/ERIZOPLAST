@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Check } from "lucide-react";
 import {
   AVISO_MEDIDAS,
+  AVISO_PRECIOS,
   etiquetaDisponibilidad,
   formatearMedidas,
+  hayPreciosPublicados,
   modeloPendiente,
   nombreCategoria,
   obtenerProducto,
@@ -201,6 +203,8 @@ export default async function FichaProducto({ params }: Props) {
                 </li>
               ))}
             </ul>
+            {/* La ficha puede no tener precio y sus relacionados sí: el aviso va con cualquier importe a la vista */}
+            {hayPreciosPublicados(relacionados) && <p className="mt-6 max-w-prose text-sm text-concreto-600">{AVISO_PRECIOS}</p>}
           </Contenedor>
         </Seccion>
       )}

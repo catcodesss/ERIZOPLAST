@@ -10,10 +10,11 @@ import type { Producto } from "./tipos";
 // `confirmacionEmpresa: "pendiente"` en todos: PLASTINORTE aún debe confirmar que fabrica cada modelo
 // con esas medidas, su material y sus colores. Hasta entonces la página avisa «medidas referenciales».
 //
-// Precios: por decisión del 09/10/2026 NINGUNO se publica hasta que PLASTINORTE apruebe costo y margen.
-// Todos dicen «Consultar precio» / «Cotizar por volumen». Los tres precios referenciales que se habían
-// calculado (5–8 % bajo un producto equivalente) siguen en FUENTES-FASE-4.md §3. Para volver a publicar uno,
-// cámbialo a { tipo: "referencial", soles, unidad: "por unidad" }; `npm run validar` comprueba el rango.
+// Precios: el 11/10/2026 el usuario pidió publicarlos todos y destacarlos en la portada. Cada uno queda
+// ~6,5 % por debajo de un producto de la competencia con precio en línea (data/fuentes-productos.ts). Tres
+// referencias son aproximadas (cosechera cerrada, caja industrial, caja con tapa doble): ver sus notas allí.
+// PLASTINORTE aún debe aprobar costo y margen: por eso todo sale «referencial».
+// `npm run validar` comprueba que cada precio quede entre un 5 % y un 8 % bajo su referencia.
 //
 // Fotos: ninguna es propia todavía. `fotoReferencial` apunta a una foto de banco registrada en
 // data/fotos.ts y se muestra rotulada «Imagen referencial». Sin foto adecuada, sale un esquema isométrico
@@ -38,7 +39,7 @@ export const productos: Producto[] = [
     material: "PEAD",
     acabado: "calada",
     colores: [],
-    precio: { tipo: "consultar", etiqueta: "Consultar precio" },
+    precio: { tipo: "referencial", soles: 33.2, unidad: "por unidad" },
     disponibilidad: "consultar",
     imagenes: [],
     fotoReferencial: "cta-jabas-naranjas",
@@ -61,7 +62,7 @@ export const productos: Producto[] = [
     material: "PEAD",
     acabado: "calada",
     colores: [],
-    precio: { tipo: "consultar", etiqueta: "Consultar precio" },
+    precio: { tipo: "referencial", soles: 27.4, unidad: "por unidad" },
     disponibilidad: "consultar",
     imagenes: [],
     fotoReferencial: "agricola-jabas-caladas",
@@ -79,7 +80,7 @@ export const productos: Producto[] = [
     material: "PEAD",
     acabado: "cerrada",
     colores: [],
-    precio: { tipo: "consultar", etiqueta: "Consultar precio" },
+    precio: { tipo: "referencial", soles: 36.9, unidad: "por unidad" },
     disponibilidad: "consultar",
     imagenes: [],
     publicado: true,
@@ -102,7 +103,7 @@ export const productos: Producto[] = [
     material: "PEAD",
     acabado: "cerrada",
     colores: [],
-    precio: { tipo: "consultar", etiqueta: "Consultar precio" },
+    precio: { tipo: "referencial", soles: 42.9, unidad: "por unidad" },
     disponibilidad: "consultar",
     imagenes: [],
     fotoReferencial: "catalogo-jabas-encajables",
@@ -121,7 +122,7 @@ export const productos: Producto[] = [
     material: "PEAD",
     acabado: "cerrada",
     colores: [],
-    precio: { tipo: "consultar", etiqueta: "Consultar precio" },
+    precio: { tipo: "referencial", soles: 117.6, unidad: "por unidad" },
     disponibilidad: "consultar",
     imagenes: [],
     publicado: true,
@@ -133,7 +134,7 @@ export const productos: Producto[] = [
     categorias: ["industriales", "cerradas"],
     resumen: "Caja cerrada, apilable y lavable en cuatro tamaños, para almacenar, trasladar y procesar producto.",
     usos: ["Almacenamiento", "Transporte interno y de reparto", "Procesamiento de productos"],
-    caracteristicas: ["Cerrada y apilable", "Lavable", "Con asas", "Cuatro tamaños: elige el que encaje en tu estantería o paleta"],
+    caracteristicas: ["Cerrada y apilable", "Lavable", "Con asas", "Cuatro tamaños: elige el que encaje en tu estantería o paleta", "El precio publicado es del tamaño 50 × 40 × 20; los otros tres se cotizan"],
     medidas: { largo: 50, ancho: 40, alto: 20 },
     otrasMedidas: [
       { largo: 50, ancho: 40, alto: 41 },
@@ -143,7 +144,7 @@ export const productos: Producto[] = [
     material: "PP",
     acabado: "cerrada",
     colores: [],
-    precio: { tipo: "consultar", etiqueta: "Cotizar por volumen" },
+    precio: { tipo: "referencial", soles: 89.3, unidad: "por unidad" },
     disponibilidad: "consultar",
     imagenes: [],
     publicado: true,
@@ -160,7 +161,7 @@ export const productos: Producto[] = [
     material: "PEAD",
     acabado: "cerrada",
     colores: [],
-    precio: { tipo: "consultar", etiqueta: "Cotizar por volumen" },
+    precio: { tipo: "referencial", soles: 60.8, unidad: "por unidad" },
     disponibilidad: "consultar",
     imagenes: [],
     publicado: true,
